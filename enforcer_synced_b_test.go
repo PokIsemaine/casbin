@@ -101,13 +101,11 @@ func BenchmarkSyncedEnforcer_HasPolicyLarge(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				e.HasPolicy(fmt.Sprintf("user%d", rand.Intn(1000)), fmt.Sprintf("data%d", rand.Intn(1000)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			e.HasPolicy(fmt.Sprintf("user%d", rand.Intn(1000)), fmt.Sprintf("data%d", rand.Intn(1000)/10), "read")
+		}
+	})
 }
 
 func BenchmarkSyncedEnforcer_AddPolicySmall(b *testing.B) {
@@ -119,13 +117,11 @@ func BenchmarkSyncedEnforcer_AddPolicySmall(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				_, _ = e.AddPolicy(fmt.Sprintf("user%d", rand.Intn(100)+100), fmt.Sprintf("data%d", (rand.Intn(100)+100)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_, _ = e.AddPolicy(fmt.Sprintf("user%d", rand.Intn(100)+100), fmt.Sprintf("data%d", (rand.Intn(100)+100)/10), "read")
+		}
+	})
 }
 
 func BenchmarkSyncedEnforcer_AddPolicyMedium(b *testing.B) {
@@ -141,13 +137,11 @@ func BenchmarkSyncedEnforcer_AddPolicyMedium(b *testing.B) {
 		b.Fatal(err)
 	}
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				_, _ = e.AddPolicy(fmt.Sprintf("user%d", rand.Intn(1000)+1000), fmt.Sprintf("data%d", (rand.Intn(1000)+1000)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_, _ = e.AddPolicy(fmt.Sprintf("user%d", rand.Intn(1000)+1000), fmt.Sprintf("data%d", (rand.Intn(1000)+1000)/10), "read")
+		}
+	})
 }
 
 func BenchmarkSyncedEnforcer_AddPolicyLarge(b *testing.B) {
@@ -164,13 +158,11 @@ func BenchmarkSyncedEnforcer_AddPolicyLarge(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				_, _ = e.AddPolicy(fmt.Sprintf("user%d", rand.Intn(10000)+10000), fmt.Sprintf("data%d", (rand.Intn(10000)+10000)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_, _ = e.AddPolicy(fmt.Sprintf("user%d", rand.Intn(10000)+10000), fmt.Sprintf("data%d", (rand.Intn(10000)+10000)/10), "read")
+		}
+	})
 }
 
 func BenchmarkSyncedEnforcer_RemovePolicySmall(b *testing.B) {
@@ -182,13 +174,11 @@ func BenchmarkSyncedEnforcer_RemovePolicySmall(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				_, _ = e.RemovePolicy(fmt.Sprintf("user%d", rand.Intn(100)), fmt.Sprintf("data%d", rand.Intn(100)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_, _ = e.RemovePolicy(fmt.Sprintf("user%d", rand.Intn(100)), fmt.Sprintf("data%d", rand.Intn(100)/10), "read")
+		}
+	})
 }
 
 func BenchmarkSyncedEnforcer_RemovePolicyMedium(b *testing.B) {
@@ -205,13 +195,11 @@ func BenchmarkSyncedEnforcer_RemovePolicyMedium(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				_, _ = e.RemovePolicy(fmt.Sprintf("user%d", rand.Intn(1000)), fmt.Sprintf("data%d", rand.Intn(1000)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_, _ = e.RemovePolicy(fmt.Sprintf("user%d", rand.Intn(1000)), fmt.Sprintf("data%d", rand.Intn(1000)/10), "read")
+		}
+	})
 }
 
 func BenchmarkSyncedEnforcer_RemovePolicyLarge(b *testing.B) {
@@ -228,11 +216,9 @@ func BenchmarkSyncedEnforcer_RemovePolicyLarge(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				_, _ = e.RemovePolicy(fmt.Sprintf("user%d", rand.Intn(10000)), fmt.Sprintf("data%d", rand.Intn(10000)/10), "read")
-			}
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_, _ = e.RemovePolicy(fmt.Sprintf("user%d", rand.Intn(10000)), fmt.Sprintf("data%d", rand.Intn(10000)/10), "read")
+		}
+	})
 }
